@@ -27,12 +27,12 @@ public class PacMan{
 			moves.add(myLoc.shift(0,1));
 	
 		//checks for the position to the left the pacman
-		if( myMap.getLoc(myLoc.shift(-1,0)) == Map.Type.COOKIE || myMap.getLoc(myLoc.shift(-1,0)) == Map.Type.EMPTY)
-			moves.add(myLoc.shift(-1,0));
+		if( myMap.getLoc(myLoc.unshift(1,0)) == Map.Type.COOKIE || myMap.getLoc(myLoc.unshift(1,0)) == Map.Type.EMPTY)
+			moves.add(myLoc.unshift(1,0));
 		
 		//checks for the position below the pacman
-		if( myMap.getLoc(myLoc.shift(0,-1)) == Map.Type.COOKIE || myMap.getLoc(myLoc.shift(0,-1)) == Map.Type.EMPTY)
-			moves.add(myLoc.shift(0,-1));
+		if( myMap.getLoc(myLoc.unshift(0,1)) == Map.Type.COOKIE || myMap.getLoc(myLoc.unshift(0,1)) == Map.Type.EMPTY)
+			moves.add(myLoc.unshift(0,1));
 	
 		return moves;
 	}
