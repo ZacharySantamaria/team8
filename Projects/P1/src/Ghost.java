@@ -21,6 +21,29 @@ public class Ghost{
 	}
 
 	public boolean is_pacman_in_range() { 
+		Location testLeft = myLoc.shift(-1,0);
+		Location testRight = myLoc.shift(1,0);
+		Location testUp = myLoc.shift(0,1);
+		Location testDown = myLoc.shift(0,-1);
+
+		//Hardcoding these options, I can't think of a clean way to do this rn
+		HashSet<Map.Type> here = myMap.getLoc(testLeft);
+		if (here.contains(Map.Type.PACMAN)){
+			return true;
+		}
+		here = myMap.getLoc(testRight);
+		if (here.contains(Map.Type.PACMAN)){
+			return true;
+		}
+		here = myMap.getLoc(testUp);
+		if (here.contains(Map.Type.PACMAN)){
+			return true;
+		}
+		here = myMap.getLoc(testDown);
+		if (here.contains(Map.Type.PACMAN)){
+			return true;
+		}
+		//No adjacent location has pacman
 		return false;
 	}
 
