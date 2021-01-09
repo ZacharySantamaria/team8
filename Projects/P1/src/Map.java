@@ -56,7 +56,7 @@ public class Map {
 
 	public HashSet<Type> getLoc(Location loc) {
 
-		if (loc.x > 25 || loc.x < 0 || loc.y < 0 || loc.y > 24) {
+		if (loc.x > dim || loc.x < 0 || loc.y < 0 || loc.y > dim) {
 			return null;
 		}
 
