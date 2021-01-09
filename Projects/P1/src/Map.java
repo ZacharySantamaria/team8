@@ -71,6 +71,27 @@ public class Map{
 	public JComponent eatCookie(String name) {
 		//update locations, components, field, and cookies
 		//the id for a cookie at (10, 1) is tok_x10_y1
-		return null;
+		/*
+		eatCookie should only be called by Pacman.consume, which checks if there's
+		a cookie at pacman's location. Thus, this should work, but null condition added anyway
+		1. Identify where pacman is
+		2. remove cookie location
+		3. get cookie component
+		4. remove cookie from compoents
+		5. remove from field
+		6. return cookie component
+		*/
+		Location pacLoc = locations.get(name); //Current location where things taking place
+		String cookieId = "tok_x"+pacLoc.x+"_y"+pacLoc.y;
+		//Check if the cookieId is there or not. May fail if I messed up how cookieId works
+		if(locations.containsKey(cookieId) && components.containsKey(cookieId)){
+			cookies++;
+			locations.remove(cookieId);
+			JComponent retval = components.get(cookieId);
+			components.remove(cookieId);
+			field.get(pacLoc).remove(Map.Type.COOKIE);
+			return retval; //The cookie component should be returned
+		}
+		return null; //Shouldn't happen? Just in case
 	}
 }
