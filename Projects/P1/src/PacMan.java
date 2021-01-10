@@ -15,7 +15,6 @@ public class PacMan {
 	}
 
 	public ArrayList<Location> get_valid_moves() {
-
 		ArrayList<Location> moves = new ArrayList<>();
 
 		// checks for the position to the right the pacman
