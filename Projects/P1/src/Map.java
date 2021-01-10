@@ -65,10 +65,9 @@ public class Map{
 
 	public boolean attack(String Name) {
 		//update gameOver
-		Location ghost = this.locations.get(Name);
-		HashSet<Type> typeAtLoc = field.get(ghost);
-		gameOver = typeAtLoc.contains(Type.PACMAN);
-		return gameOver;
+		this.gameOver = true;
+		
+		return true;
 	}
 	
 	public JComponent eatCookie(String name) {
