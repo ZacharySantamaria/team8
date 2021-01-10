@@ -43,6 +43,10 @@ public class PacMan{
 	}
 
 	public JComponent consume() { 
+		HashSet<Map.Type> here = myMap.getLoc(myLoc);
+		if (here.contains(Map.Type.COOKIE)){
+			return myMap.eatCookie(myName);
+		}
  		return null;
 	}
 }
