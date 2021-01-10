@@ -17,6 +17,29 @@ public class PacMan {
 	}
 
 	public ArrayList<Location> get_valid_moves() {
+		ArrayList<Location> moves = new ArrayList<>();
+
+		// checks for the position to the right the pacman
+		if (myMap.getLoc(myLoc.shift(1, 0)).contains(Map.Type.COOKIE)
+				|| myMap.getLoc(myLoc.shift(1, 0)).contains(Map.Type.EMPTY))
+			moves.add(myLoc.shift(1, 0));
+
+		// checks for the position above the pacman
+		if (myMap.getLoc(myLoc.shift(0, 1)).contains(Map.Type.COOKIE)
+				|| myMap.getLoc(myLoc.shift(0, 1)).contains(Map.Type.EMPTY))
+			moves.add(myLoc.shift(0, 1));
+
+		// checks for the position to the left the pacman
+		if (myMap.getLoc(myLoc.shift(-1, 0)).contains(Map.Type.COOKIE)
+				|| myMap.getLoc(myLoc.shift(-1, 0)).contains(Map.Type.EMPTY))
+			moves.add(myLoc.shift(-1, 0));
+
+		// checks for the position below the pacman
+		if (myMap.getLoc(myLoc.shift(0, -1)).contains(Map.Type.COOKIE)
+				|| myMap.getLoc(myLoc.shift(0, -1)).contains(Map.Type.EMPTY))
+			moves.add(myLoc.shift(0, -1));
+
+		return moves;
 		return null;
 	}
 
@@ -42,38 +65,6 @@ public class PacMan {
 
 	public boolean is_ghost_in_range() {
 
-		Location up = this.myLoc.shift(0, 1);
-		this.myLoc = this.myLoc.unshift(up);
-
-		Location down = this.myLoc.shift(0, -1);
-		this.myLoc = this.myLoc.unshift(down);
-
-		Location left = this.myLoc.shift(-1, 0);
-		this.myLoc = this.myLoc.unshift(left);
-
-		Location right = this.myLoc.shift(1, 0);
-		this.myLoc = this.myLoc.unshift(right);
-
-		Location upright = this.myLoc.shift(1, 1);
-		this.myLoc = this.myLoc.unshift(upright);
-
-		Location downright = this.myLoc.shift(1, -1);
-		this.myLoc = this.myLoc.unshift(downright);
-
-		Location upleft = this.myLoc.shift(-1, 1);
-		this.myLoc = this.myLoc.unshift(upleft);
-
-		Location downleft = this.myLoc.shift(-1, -1);
-		this.myLoc = this.myLoc.unshift(downleft);
-
-		if (myMap.getLoc(up).contains(Map.Type.GHOST) || myMap.getLoc(down).contains(Map.Type.GHOST)
-				|| myMap.getLoc(left).contains(Map.Type.GHOST) || myMap.getLoc(right).contains(Map.Type.GHOST)
-				|| myMap.getLoc(upright).contains(Map.Type.GHOST) || myMap.getLoc(downright).contains(Map.Type.GHOST)
-				|| myMap.getLoc(upleft).contains(Map.Type.GHOST) || myMap.getLoc(downleft).contains(Map.Type.GHOST)) {
-			return true;
-		}
-		return false;
-	}
 
 	public JComponent consume() {
 		HashSet<Map.Type> here = myMap.getLoc(myLoc);
