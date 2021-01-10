@@ -76,8 +76,10 @@ public class Map {
 	}
 
 	public boolean attack(String Name) {
-		// update gameOver
-		return false;
+		//update gameOver
+		this.gameOver = true;
+		
+		return true;
 	}
 
 	public JComponent eatCookie(String name) {
