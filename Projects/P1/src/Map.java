@@ -61,13 +61,10 @@ public class Map {
 
 	public HashSet<Type> getLoc(Location loc) {
 		if (loc.x > dim || loc.x < 0 || loc.y < 0 || loc.y > dim) {
-			return null;
+			return wallSet;
 		}
 
-		if (field.get(loc).contains(Map.Type.WALL))
-			return wallSet;
-
-		else if (field.get(loc).contains(Map.Type.EMPTY))
+		if (!field.containsKey(loc) || field.get(loc).size() == 0)
 			return emptySet;
 
 		else
@@ -75,9 +72,9 @@ public class Map {
 	}
 
 	public boolean attack(String Name) {
-		//update gameOver
+		// update gameOver
 		this.gameOver = true;
-		
+
 		return true;
 	}
 
