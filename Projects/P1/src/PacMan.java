@@ -60,6 +60,7 @@ public class PacMan {
 		this.prevLoc = myLoc;
 		this.myLoc = locations.get(0);
 		this.myMap.move(myName, myLoc, Map.Type.PACMAN);
+		
 		return true;
 	}
 
