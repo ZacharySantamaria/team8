@@ -6,6 +6,6 @@ public class TestMapGetLoc {
 
 	public void testMapGetLoc() {
 		NoFrame frame = new NoFrame();
-		assert(frame.getMap().getLoc(new Location(12,1)).contains(Map.Type.COOKIE))
+		assert (frame.getMap().getLoc(new Location(12, 1)).contains(Map.Type.COOKIE));
 	}
 }
