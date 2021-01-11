@@ -40,7 +40,7 @@ public class PacMan {
 			moves.add(myLoc.shift(0, -1));
 
 		return moves;
-		return null;
+
 	}
 
 	public boolean move() {
