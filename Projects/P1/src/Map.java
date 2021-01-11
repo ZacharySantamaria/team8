@@ -52,7 +52,9 @@ public class Map {
 		// update locations, components, and field
 		// use the setLocation method for the component to move it to the new location
 		if (locations.get(name) != null) {
+			locations.remove(name);
 			locations.put(name, loc);
+			field.remove(loc);
 			field.get(loc).add(type);
 			return true;
 		}
@@ -61,7 +63,7 @@ public class Map {
 
 	public HashSet<Type> getLoc(Location loc) {
 		if (loc.x > dim || loc.x < 0 || loc.y < 0 || loc.y > dim) {
-			return new HashSet<Type> ();
+			return new HashSet<Type>();
 		}
 
 		if (field.get(loc).contains(Map.Type.WALL))
@@ -75,9 +77,9 @@ public class Map {
 	}
 
 	public boolean attack(String Name) {
-		//update gameOver
+		// update gameOver
 		this.gameOver = true;
-		
+
 		return true;
 	}
 
