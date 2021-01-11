@@ -30,13 +30,13 @@ public class Ghost {
 		}
 		
 		//check going up
-		shifted = myLoc.shift(0, 1);
+		shifted = myLoc.shift(0, -1);
 		if(!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
 			valid_moves.add(shifted);
 		}
 		
 		//check going down
-		shifted = myLoc.shift(0, -1);
+		shifted = myLoc.shift(0, 1);
 		if(!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
 			valid_moves.add(shifted);
 		}
