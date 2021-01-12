@@ -14,6 +14,6 @@ public class TestGhostValidMoves extends TestCase {
 		valid_moves.add(new Location(2,1));
 		valid_moves.add(new Location(1,2));		
 		assertEquals(result, valid_moves);
-		
+    
 	}
 }
