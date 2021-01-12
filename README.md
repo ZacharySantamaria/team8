@@ -79,3 +79,4 @@ Description: This method checks all the valid moves at current position for the 
 ### attack()
 
 This function checks to see if PacMan is in the attack range by using the is_pacman_in_range method and attacks PacMan if it is in range. This function returns true if the attack was successful and false otherwise
+
