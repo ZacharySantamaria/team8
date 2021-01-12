@@ -50,6 +50,7 @@ public class PacMan {
 			return false;
 		this.myLoc = locations.get(0);
 		this.myMap.move(myName, myLoc, Map.Type.PACMAN);
+		
 		return true;
 
 	}
@@ -90,7 +91,7 @@ public class PacMan {
 
 	public JComponent consume() {
 		HashSet<Map.Type> here = myMap.getLoc(myLoc);
-		if (here.contains(Map.Type.COOKIE)) {
+		if (here != null && here.contains(Map.Type.COOKIE)){
 			return myMap.eatCookie(myName);
 		}
 		return null;
