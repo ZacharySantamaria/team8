@@ -17,7 +17,29 @@ public class PacMan{
 	}
 
 	public ArrayList<Location> get_valid_moves() {
-		return null;	
+		ArrayList<Location> moves = new ArrayList<>();
+
+		// checks for the position to the right the pacman
+		if (myMap.getLoc(myLoc.shift(1, 0)).contains(Map.Type.COOKIE)
+				|| myMap.getLoc(myLoc.shift(1, 0)).contains(Map.Type.EMPTY))
+			moves.add(myLoc.shift(1, 0));
+
+		// checks for the position above the pacman
+		if (myMap.getLoc(myLoc.shift(0, 1)).contains(Map.Type.COOKIE)
+				|| myMap.getLoc(myLoc.shift(0, 1)).contains(Map.Type.EMPTY))
+			moves.add(myLoc.shift(0, 1));
+
+		// checks for the position to the left the pacman
+		if (myMap.getLoc(myLoc.shift(-1, 0)).contains(Map.Type.COOKIE)
+				|| myMap.getLoc(myLoc.shift(-1, 0)).contains(Map.Type.EMPTY))
+			moves.add(myLoc.shift(-1, 0));
+
+		// checks for the position below the pacman
+		if (myMap.getLoc(myLoc.shift(0, -1)).contains(Map.Type.COOKIE)
+				|| myMap.getLoc(myLoc.shift(0, -1)).contains(Map.Type.EMPTY))
+			moves.add(myLoc.shift(0, -1));
+
+		return moves;
 	}
 
 	public boolean move() {
