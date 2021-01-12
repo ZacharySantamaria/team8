@@ -5,7 +5,6 @@ import java.io.*;
 public class TestPacManMove extends TestCase {
 
 	public void testPacManMove() throws FileNotFoundException{
-		//Creating A Map 
 		NoFrame frame = new NoFrame();
 		Location loc = new Location(1, 11);
 		PacMan pacman = frame.addPacMan(loc); 
@@ -13,6 +12,5 @@ public class TestPacManMove extends TestCase {
 		assertEquals(pacman.myLoc, new Location(1,10));
 		pacman.move();
 		assertEquals(pacman.myLoc, new Location(1,9));
-		
 	}
 }
