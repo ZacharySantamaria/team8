@@ -4,7 +4,7 @@ import java.io.*;
 
 public class TestPacManValidMoves extends TestCase {
 
-	public void testPacManValidMoves() throws FileNotFoundException{
+	public void testPacManValidMoves() throws FileNotFoundException {
 		return null;
 	}
 }
