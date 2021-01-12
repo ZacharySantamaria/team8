@@ -22,21 +22,15 @@ public class PacMan{
 
 	public boolean move() {
 		ArrayList<Location> locations = this.get_valid_moves();
-		if(this.is_ghost_in_range()) {
-			for(Location l: locations) {
-				if(myMap.getLoc(l) != null && myMap.getLoc(l).contains(Map.Type.GHOST)) {
-					locations.remove(l);
-				}
-			}
-		}
-		if(locations.size() > 1 && prevLoc != null) locations.remove(prevLoc);
-		if(locations == null || locations.size() == 0) return false;
-		
-		this.prevLoc = myLoc;
+
+		if (locations.size() == 0)
+			return false;
+    
 		this.myLoc = locations.get(0);
 		this.myMap.move(myName, myLoc, Map.Type.PACMAN);
 		
 		return true;
+
 	}
 
 	public boolean is_ghost_in_range() { 
@@ -45,7 +39,7 @@ public class PacMan{
 
 	public JComponent consume() { 
 		HashSet<Map.Type> here = myMap.getLoc(myLoc);
-		if (here.contains(Map.Type.COOKIE)){
+		if (here != null && here.contains(Map.Type.COOKIE)){
 			return myMap.eatCookie(myName);
 		}
  		return null;

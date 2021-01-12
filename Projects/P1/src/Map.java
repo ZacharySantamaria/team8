@@ -68,8 +68,9 @@ public class Map {
 
 		if (field.get(loc).contains(Map.Type.WALL))
 			return wallSet;
+		}
 
-		else if (field.get(loc).contains(Map.Type.EMPTY))
+		if (!field.containsKey(loc) || field.get(loc).size() == 0)
 			return emptySet;
 
 		else
