@@ -26,7 +26,7 @@ Controls functionality of the player character.
 
 ### get_valid_moves()
 
-Method returns an ArrayList of valid Locations that pacman can move to. A valid location is an empty location or a location with a cookie
+Method returns an ArrayList of valid Locations that pacman can move to. A valid location is an empty location or a location with a cookie. To test this method, we picked a random location from the map and added the valid locations on the map to the ArrayList. This ArrayList was compared to the one returned by get valid moves to check their equality.
 
 ### move()
 
@@ -51,7 +51,7 @@ The test for this method creates a NoFrame and adds Pacman at location (1,1). Ca
 
 ### getLoc()
 
-This method returns what is in the specific location(Empty, Ghost, Pac-Man, Cookie, Wall)
+This method returns what is in the specific location(Empty, Ghost, Pac-Man, Cookie, Wall). To test the method, we picked a random location on the map where a cookie was. Then we compared the type of the return value of the getLoc() method to ensure it was a cookie.
 
 ### attack()
 
@@ -80,4 +80,4 @@ Description: This method checks all the valid moves at current position for the 
 
 ### attack()
 
-This function checks to see if PacMan is in the attack range by using the is_pacman_in_range method and attacks PacMan if it is in range. This function returns true if the attack was successful and false otherwise
+This function checks to see if PacMan is in the attack range by using the is_pacman_in_range method and attacks PacMan if it is in range. This function returns true if the attack was successful and false otherwise. To test the method, we called attack and asserted true to ensure the attack happened.
