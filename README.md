@@ -12,6 +12,8 @@ Roger Luo
 ![Pacman Image](https://i.imgur.com/HwENRZR.png)
 
 ## Running Game from Command Line
+
+In order to run the game, 
 ```
 javac -cp "src/" src/*.java //compile the code before start the game
 
@@ -36,7 +38,7 @@ The test for this method creates a NoFrame and adds Pacman at location (1,1) and
 
 ### consume()
 
-This method checks to see if there is a 'power-cookie' located in Pacman's current coordinate. If there is, this method calls the eatCookie method from the Map Class, and returns a boolean if the cookie a consumed.
+This method checks to see if there is a 'power-cookie' located in Pacman's current coordinate. If there is, this method calls the eatCookie method from the Map Class, and returns a Jcomponent if the cookie a consumed. This method was tested by using a creating a NoFrame, then having a PacMan at (0,1). As this method should consume the token that PacMan is present on, the method should not return null.
 
 ## Map Class
 
@@ -57,7 +59,7 @@ Description: This method is called my attack() from Ghost class. When it is call
 
 ### eatCookie()
 
-The method controls Pacman eating a cookie. If it was able to successfully eat the cookie and update the display to do so return true, otherwise return false.
+The method controls Pacman eating a cookie. If it was able to successfully eat the cookie and update the display to do so return the corresponding JComponent, or null if no cookie was able to be eaten. This method was implemented in a way such that this method would only ever be called by Pacman.eatCookie() after the cooresponding checks have been made so there should be a cookie present. As thus, the test for this method has the same behavior as pacman.consume(), and was implemented with that same philosophy.
 
 ## Ghost Class
 
@@ -74,9 +76,8 @@ The test for this method creates a NoFrame and adds Pacman at location (1,1) and
 
 ### is_pacman_in_range()
 
-Description: This method checks all the valid moves at current position for the ghosts. Up, Down, Left, and Right, four directions are checked. If the directions is not wall, it will be add to a ArrayList. Test for this method is put ghosts at certain position and check whether this method returns the right list.
+Description: This method checks all the valid moves at current position for the ghosts. Up, Down, Left, and Right, four directions are checked. If pacman is present in any of ghost's surrounding tiles, this method will return true, else false. This was tested by placing a NoFrame with a Pacman and a Ghost right next to each other, to see if the ghost will detect a pacman near it.
 
 ### attack()
 
 This function checks to see if PacMan is in the attack range by using the is_pacman_in_range method and attacks PacMan if it is in range. This function returns true if the attack was successful and false otherwise
-
