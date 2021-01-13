@@ -2,11 +2,16 @@ import junit.framework.*;
 import java.awt.Color;
 import java.io.*;
 
-public class TestMapEatCookie {
+public class TestMapEatCookie extends TestCase{
 	
 	public void testMapEatCookie() {
-		NoFrame frame = new NoFrame();
-		PacMan pacman = frame.addPacMan(new Location(0, 1)); //Creates PacMan at location x, y
-		assertTrue(pacman.consume() == null);
+		try{
+			NoFrame frame = new NoFrame();
+			PacMan pacman = frame.addPacMan(new Location(0, 1)); //Creates PacMan at location x, y
+			assertTrue(pacman.consume() == null);
+		}
+		catch(Exception e){
+			assertTrue(1==4);
+		}
 	}
 }
