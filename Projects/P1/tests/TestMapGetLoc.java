@@ -4,7 +4,7 @@ import java.io.*;
 
 public class TestMapGetLoc {
 
-	public void testMapGetLoc() {
+	public void testMapGetLoc() throws FileNotFoundException {
 		NoFrame frame = new NoFrame();
 		assert (frame.getMap().getLoc(new Location(12, 1)).contains(Map.Type.COOKIE));
 	}
