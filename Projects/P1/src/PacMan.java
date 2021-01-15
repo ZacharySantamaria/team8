@@ -44,15 +44,15 @@ public class PacMan{
 
 	public boolean move() {
 		ArrayList<Location> locations = this.get_valid_moves();
-		if(this.is_ghost_in_range){
+		if(this.is_ghost_in_range()){
 			for(Location l: locations){
-				if(map.getLoc(l).contains(Map.Type.GHOST)){
+				if(myMap.getLoc(l).contains(Map.Type.GHOST)){
 					locations.remove(l);
 				}
 			}
 		}
 		if(locations.size() > 1 && prevLoc != null){
-			locations.remove(l);
+			locations.remove(prevLoc);
 		}		
 		if (locations.size() == 0)
 			return false;
