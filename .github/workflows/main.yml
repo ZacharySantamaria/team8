@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events 
   push:
-    branches: [ main, FTR-actions ]
+    branches: [ main, FTR-actions, actions-Jyoti ]
   pull_request:
-    branches: [ main, FTR-actions ]
+    branches: [ main, FTR-actions, actions-Jyoti ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
