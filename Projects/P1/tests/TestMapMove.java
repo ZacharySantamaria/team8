@@ -1,9 +1,9 @@
 import junit.framework.*;
 import java.awt.Color;
 import java.io.*;
-public class TestMapMove {
+public class TestMapMove extends TestCase {
 
-	public void testMapMove() {
+	public void testMapMove() throws FileNotFoundException {
 		NoFrame frame = new NoFrame();
 		Location loc = new Location(1, 1);
 		PacMan pacman = frame.addPacMan(loc);
