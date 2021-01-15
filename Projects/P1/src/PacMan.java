@@ -51,6 +51,11 @@ public class PacMan{
 				}
 			}
 		}
+		for(Location l: locations){
+			System.out.println(l);
+		}
+		System.out.println("Prev: " + this.prevLoc);
+		
 		if(locations.size() > 1 && prevLoc != null){
 			locations.remove(prevLoc);
 		}		
@@ -58,37 +63,33 @@ public class PacMan{
 			return false;
 		
 		this.prevLoc = this.myLoc;
+		System.out.println("Curr:" + this.myLoc);
+		System.out.println("updated Prev:" + this.prevLoc);
+		
+		System.out.println();
 		this.myLoc = locations.get(0);
 		this.myMap.move(myName, myLoc, Map.Type.PACMAN);
 		
 		return true;
 
 	}
-
+	
 	public boolean is_ghost_in_range() { 
 		Location up = this.myLoc.shift(0, 1);
-		this.myLoc = this.myLoc.unshift(up);
 
 		Location down = this.myLoc.shift(0, -1);
-		this.myLoc = this.myLoc.unshift(down);
 
 		Location left = this.myLoc.shift(-1, 0);
-		this.myLoc = this.myLoc.unshift(left);
 
 		Location right = this.myLoc.shift(1, 0);
-		this.myLoc = this.myLoc.unshift(right);
 
 		Location upright = this.myLoc.shift(1, 1);
-		this.myLoc = this.myLoc.unshift(upright);
 
 		Location downright = this.myLoc.shift(1, -1);
-		this.myLoc = this.myLoc.unshift(downright);
 
 		Location upleft = this.myLoc.shift(-1, 1);
-		this.myLoc = this.myLoc.unshift(upleft);
 
 		Location downleft = this.myLoc.shift(-1, -1);
-		this.myLoc = this.myLoc.unshift(downleft);
 
 		if (myMap.getLoc(up).contains(Map.Type.GHOST) || myMap.getLoc(down).contains(Map.Type.GHOST)
 				|| myMap.getLoc(left).contains(Map.Type.GHOST) || myMap.getLoc(right).contains(Map.Type.GHOST)
