@@ -2,7 +2,7 @@ import junit.framework.*;
 import java.awt.Color;
 import java.io.*;
 
-public class TestMapGetLoc {
+public class TestMapGetLoc extends TestCase {
 
 	public void testMapGetLoc() throws FileNotFoundException {
 		NoFrame frame = new NoFrame();

@@ -4,7 +4,7 @@ name: CI
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events 
   push:
     branches: [ main, FTR-actions ]
   pull_request:
@@ -15,9 +15,27 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  PacManMoves:
-    # The type of runner that the job will run on 
+
+ testPacMan-Move:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    container: openjdk
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
+      - uses: actions/checkout@v2   
+
+      - name: Test-PacManMoves
+        run: |
+          cd Projects/P1
+          javac -cp "src/" src/*.java
+          javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
+          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestPacManMove
+          
+ testPacMan-get_valid_moves:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: openjdk
 
@@ -27,14 +45,108 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a set of commands using the runners shell
-      - name: Test-PacManMoves
+      - name: Test PacMan-get_valid_moves
         run: |
           cd Projects/P1
           javac -cp "src/" src/*.java
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
-          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestPacManMove
+          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestPacManValidMoves
           
-  GhostValidMoves:
+  testPacMan-consume:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    container: openjdk
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a set of commands using the runners shell
+      - name: Test PacMan-consume
+        run: |
+          cd Projects/P1
+          javac -cp "src/" src/*.java
+          javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
+          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestConsume
+          
+   testMapGetLoc:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    container: openjdk
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
+      - uses: actions/checkout@v2   
+      
+      - name: Test-GetLoc
+
+        run: |
+          cd Projects/P1
+          javac -cp "src/" src/*.java
+          javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
+          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestMapGetLoc
+          
+  testMapAttack:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    container: openjdk
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
+      - uses: actions/checkout@v2   
+      
+      - name: Test-MapAttack
+
+        run: |
+          cd Projects/P1
+          javac -cp "src/" src/*.java
+          javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
+          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestMapAttack
+ 
+  
+  # Thomas Lu This workflow contains a jobs to test map-eatCookie, pacman-in_range, and pacman-consume
+  testMap-eatCookie:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    container: openjdk
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a set of commands using the runners shell
+      - name: Test Map-eatCookie
+        run: |
+          cd Projects/P1
+          javac -cp "src/" src/*.java
+          javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
+          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestMapEatCookie 
+  
+ testGhost-attack:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    container: openjdk
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a set of commands using the runners shell
+      - name: TestGhostAttack
+        run: |
+          cd Projects/P1
+          javac -cp "src/" src/*.java
+          javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
+          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestAttack
+    
+ GhostValidMoves:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: openjdk
@@ -44,13 +156,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2          
       - name: Test-GhostGetValidMoves
+
         run: |
           cd Projects/P1
           javac -cp "src/" src/*.java
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
           java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestGhostValidMoves
-          
-  MapAttack:
+  
+  testGhost-PacManInRange:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: openjdk
@@ -58,12 +171,15 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2        
-      - name: Test-MapAttack
+      - uses: actions/checkout@v2
+
+      # Runs a set of commands using the runners shell
+      - name: Test Ghost-PacMan_In_Range
         run: |
           cd Projects/P1
           javac -cp "src/" src/*.java
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
-          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestMapAttack
-          
+          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestPacManInRange
+ 
+  
 
