@@ -6,16 +6,15 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events 
   push:
-    branches: [ main, FTR-actions ]
+    branches: [ main, FTR-actions, actions-Jyoti ]
   pull_request:
-    branches: [ main, FTR-actions ]
+    branches: [ main, FTR-actions, actions-Jyoti ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-
  testPacMan-Move:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -217,6 +216,7 @@ jobs:
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
           java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestGhostInRange
  
+
  testGhost-move:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -233,6 +233,4 @@ jobs:
           cd Projects/P1
           javac -cp "src/" src/*.java
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
-          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestGhostMove 
-  
-
+          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestGhostMove
