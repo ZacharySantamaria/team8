@@ -181,7 +181,7 @@ jobs:
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
           java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestPacManInRange
 
-  testMap-move:
+ testMap-move:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: openjdk
@@ -199,7 +199,7 @@ jobs:
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
           java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestMapMove
   
-  testPacman-ghost_in_range:
+ testPacman-ghost_in_range:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: openjdk
@@ -217,7 +217,7 @@ jobs:
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
           java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestGhostInRange
  
-  testGhost-move:
+ testGhost-move:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container: openjdk
