@@ -2,12 +2,12 @@ import java.util.HashSet;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 
-public class PacMan{
+public class PacMan {
 	String myName;
 	Location myLoc;
 	Location prevLoc;
 	Map myMap;
-	Location shift; 
+	Location shift;
 
 	public PacMan(String name, Location loc, Map map) {
 		this.myLoc = loc;
@@ -18,22 +18,22 @@ public class PacMan{
 
 	public ArrayList<Location> get_valid_moves() {
 		ArrayList<Location> moves = new ArrayList<>();
-		
+
 		// checks for the position below the pacman
-				if (myMap.getLoc(myLoc.shift(0, 1)).contains(Map.Type.COOKIE)
-						|| myMap.getLoc(myLoc.shift(0, 1)).contains(Map.Type.EMPTY))
-					moves.add(myLoc.shift(0, 1));
-		
+		if (myMap.getLoc(myLoc.shift(0, 1)).contains(Map.Type.COOKIE)
+				|| myMap.getLoc(myLoc.shift(0, 1)).contains(Map.Type.EMPTY))
+			moves.add(myLoc.shift(0, 1));
+
 		// checks for the position above the pacman
 		if (myMap.getLoc(myLoc.shift(0, -1)).contains(Map.Type.COOKIE)
 				|| myMap.getLoc(myLoc.shift(0, -1)).contains(Map.Type.EMPTY))
 			moves.add(myLoc.shift(0, -1));
-		
+
 		// checks for the position to the left the pacman
-				if (myMap.getLoc(myLoc.shift(-1, 0)).contains(Map.Type.COOKIE)
-						|| myMap.getLoc(myLoc.shift(-1, 0)).contains(Map.Type.EMPTY))
-					moves.add(myLoc.shift(-1, 0));
-				
+		if (myMap.getLoc(myLoc.shift(-1, 0)).contains(Map.Type.COOKIE)
+				|| myMap.getLoc(myLoc.shift(-1, 0)).contains(Map.Type.EMPTY))
+			moves.add(myLoc.shift(-1, 0));
+
 		// checks for the position to the right the pacman
 		if (myMap.getLoc(myLoc.shift(1, 0)).contains(Map.Type.COOKIE)
 				|| myMap.getLoc(myLoc.shift(1, 0)).contains(Map.Type.EMPTY))
@@ -44,34 +44,33 @@ public class PacMan{
 
 	public boolean move() {
 		ArrayList<Location> locations = this.get_valid_moves();
-		//remove ghost locations so go the the directions have no ghost
-		if(this.is_ghost_in_range()){
-			for(Location l: locations){
-				if(myMap.getLoc(l).contains(Map.Type.GHOST)){
+		// remove ghost locations so go the the directions have no ghost
+		if (this.is_ghost_in_range()) {
+			for (Location l : locations) {
+				if (myMap.getLoc(l).contains(Map.Type.GHOST)) {
 					locations.remove(l);
 				}
 			}
 		}
-		
-		//remove the prevLoc when there is other options So the PacMan will not go back
-		if(this.prevLoc != null) {
+
+		// remove the prevLoc when there is other options So the PacMan will not go back
+		if (this.prevLoc != null) {
 			locations.remove(prevLoc);
 		}
-		
-		
-		//if no place to go return false and do nothing
+
+		// if no place to go return false and do nothing
 		if (locations.size() == 0)
 			return false;
-		
+
 		this.prevLoc = this.myLoc;
 		this.myLoc = locations.get(0);
 		this.myMap.move(myName, myLoc, Map.Type.PACMAN);
-		
+
 		return true;
 
 	}
-	
-	public boolean is_ghost_in_range() { 
+
+	public boolean is_ghost_in_range() {
 		Location up = this.myLoc.shift(0, 1);
 
 		Location down = this.myLoc.shift(0, -1);
@@ -80,18 +79,8 @@ public class PacMan{
 
 		Location right = this.myLoc.shift(1, 0);
 
-		Location upright = this.myLoc.shift(1, 1);
-
-		Location downright = this.myLoc.shift(1, -1);
-
-		Location upleft = this.myLoc.shift(-1, 1);
-
-		Location downleft = this.myLoc.shift(-1, -1);
-
-		if (myMap.getLoc(up).contains(Map.Type.GHOST) || myMap.getLoc(down).contains(Map.Type.GHOST)
-				|| myMap.getLoc(left).contains(Map.Type.GHOST) || myMap.getLoc(right).contains(Map.Type.GHOST)
-				|| myMap.getLoc(upright).contains(Map.Type.GHOST) || myMap.getLoc(downright).contains(Map.Type.GHOST)
-				|| myMap.getLoc(upleft).contains(Map.Type.GHOST) || myMap.getLoc(downleft).contains(Map.Type.GHOST)) {
+		if (myMap.getLoc(up).contains(Map.Type.GHOST) && myMap.getLoc(down).contains(Map.Type.GHOST)
+				&& myMap.getLoc(left).contains(Map.Type.GHOST) && myMap.getLoc(right).contains(Map.Type.GHOST)) {
 			return true;
 		}
 		return false;
@@ -105,3 +94,6 @@ public class PacMan{
  		return null;
 	}
 }
+
+		 
+		

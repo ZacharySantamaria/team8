@@ -56,9 +56,9 @@ public class Map {
 			locations.put(name, loc);
 			field.remove(name);
 			field.get(loc).add(type);
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	public HashSet<Type> getLoc(Location loc) {
@@ -66,7 +66,7 @@ public class Map {
 			return new HashSet<Type>();
 		}
 
-		if (field.get(loc).contains(Map.Type.WALL)){
+		if (field.get(loc).contains(Map.Type.WALL)) {
 			return wallSet;
 		}
 
@@ -76,10 +76,10 @@ public class Map {
 		else
 			return field.get(loc);
 	}
-	
-	//this is only called by ghost attack
-	//when it is called, we assume the attack is succeed
-	//the only thing this function does it update game statu
+
+	// this is only called by ghost attack
+	// when it is called, we assume the attack is succeed
+	// the only thing this function does it update game statu
 	public boolean attack(String Name) {
 		// update gameOver
 		return !this.gameOver;
