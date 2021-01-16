@@ -17,8 +17,16 @@ public class Ghost {
 	public ArrayList<Location> get_valid_moves() {
 		ArrayList<Location> valid_moves = new ArrayList<>();
 	
-		//check going right
-		Location shifted = myLoc.shift(1, 0);
+		Location shifted = null;
+		
+		//check going down
+		shifted = myLoc.shift(0, 1);
+		if(!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
+			valid_moves.add(shifted);
+		}
+						
+		//check going up
+		shifted = myLoc.shift(0, -1);
 		if(!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
 			valid_moves.add(shifted);
 		}
@@ -29,14 +37,8 @@ public class Ghost {
 			valid_moves.add(shifted);
 		}
 		
-		//check going up
-		shifted = myLoc.shift(0, -1);
-		if(!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
-			valid_moves.add(shifted);
-		}
-		
-		//check going down
-		shifted = myLoc.shift(0, 1);
+		//check going right
+		shifted = myLoc.shift(1, 0);
 		if(!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
 			valid_moves.add(shifted);
 		}

@@ -18,32 +18,33 @@ public class PacMan{
 
 	public ArrayList<Location> get_valid_moves() {
 		ArrayList<Location> moves = new ArrayList<>();
-
+		
+		// checks for the position below the pacman
+				if (myMap.getLoc(myLoc.shift(0, 1)).contains(Map.Type.COOKIE)
+						|| myMap.getLoc(myLoc.shift(0, 1)).contains(Map.Type.EMPTY))
+					moves.add(myLoc.shift(0, 1));
+		
+		// checks for the position above the pacman
+		if (myMap.getLoc(myLoc.shift(0, -1)).contains(Map.Type.COOKIE)
+				|| myMap.getLoc(myLoc.shift(0, -1)).contains(Map.Type.EMPTY))
+			moves.add(myLoc.shift(0, -1));
+		
+		// checks for the position to the left the pacman
+				if (myMap.getLoc(myLoc.shift(-1, 0)).contains(Map.Type.COOKIE)
+						|| myMap.getLoc(myLoc.shift(-1, 0)).contains(Map.Type.EMPTY))
+					moves.add(myLoc.shift(-1, 0));
+				
 		// checks for the position to the right the pacman
 		if (myMap.getLoc(myLoc.shift(1, 0)).contains(Map.Type.COOKIE)
 				|| myMap.getLoc(myLoc.shift(1, 0)).contains(Map.Type.EMPTY))
 			moves.add(myLoc.shift(1, 0));
-
-		// checks for the position above the pacman
-		if (myMap.getLoc(myLoc.shift(0, 1)).contains(Map.Type.COOKIE)
-				|| myMap.getLoc(myLoc.shift(0, 1)).contains(Map.Type.EMPTY))
-			moves.add(myLoc.shift(0, 1));
-
-		// checks for the position to the left the pacman
-		if (myMap.getLoc(myLoc.shift(-1, 0)).contains(Map.Type.COOKIE)
-				|| myMap.getLoc(myLoc.shift(-1, 0)).contains(Map.Type.EMPTY))
-			moves.add(myLoc.shift(-1, 0));
-
-		// checks for the position below the pacman
-		if (myMap.getLoc(myLoc.shift(0, -1)).contains(Map.Type.COOKIE)
-				|| myMap.getLoc(myLoc.shift(0, -1)).contains(Map.Type.EMPTY))
-			moves.add(myLoc.shift(0, -1));
 
 		return moves;
 	}
 
 	public boolean move() {
 		ArrayList<Location> locations = this.get_valid_moves();
+		//remove ghost locations so go the the directions have no ghost
 		if(this.is_ghost_in_range()){
 			for(Location l: locations){
 				if(myMap.getLoc(l).contains(Map.Type.GHOST)){
@@ -51,22 +52,18 @@ public class PacMan{
 				}
 			}
 		}
-		for(Location l: locations){
-			System.out.println(l);
-		}
-		System.out.println("Prev: " + this.prevLoc);
 		
-		if(locations.size() > 1 && prevLoc != null){
+		//remove the prevLoc when there is other options So the PacMan will not go back
+		if(this.prevLoc != null) {
 			locations.remove(prevLoc);
-		}		
+		}
+		
+		
+		//if no place to go return false and do nothing
 		if (locations.size() == 0)
 			return false;
 		
 		this.prevLoc = this.myLoc;
-		System.out.println("Curr:" + this.myLoc);
-		System.out.println("updated Prev:" + this.prevLoc);
-		
-		System.out.println();
 		this.myLoc = locations.get(0);
 		this.myMap.move(myName, myLoc, Map.Type.PACMAN);
 		
