@@ -66,7 +66,7 @@ public class Map {
 			return new HashSet<Type>();
 		}
 
-		if (field.get(loc).contains(Map.Type.WALL)){
+		if (field.get(loc).contains(Map.Type.WALL)) {
 			return wallSet;
 		}
 
@@ -74,7 +74,7 @@ public class Map {
 			return emptySet;
 
 		else
-			return field.get(loc);
+			return field.get(new Location(9, 12));
 	}
 
 	public boolean attack(String Name) {
