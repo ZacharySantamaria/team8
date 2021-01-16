@@ -76,12 +76,13 @@ public class Map {
 		else
 			return field.get(loc);
 	}
-
+	
+	//this is only called by ghost attack
+	//when it is called, we assume the attack is succeed
+	//the only thing this function does it update game statu
 	public boolean attack(String Name) {
 		// update gameOver
-		this.gameOver = true;
-
-		return true;
+		return !this.gameOver;
 	}
 
 	public JComponent eatCookie(String name) {
