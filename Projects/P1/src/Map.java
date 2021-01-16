@@ -98,7 +98,7 @@ public class Map {
 		String cookieId = "tok_x" + pacLoc.x + "_y" + pacLoc.y;
 		// Check if the cookieId is there or not. May fail if I messed up how cookieId
 		// works
-		if (locations.containsKey(cookieId) && components.containsKey(cookieId)) {
+		if (locations.containsKey(name) && components.containsKey(name)) {
 			cookies++;
 			locations.remove(cookieId);
 			JComponent retval = components.get(cookieId);

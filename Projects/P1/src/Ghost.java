@@ -74,7 +74,7 @@ public class Ghost {
 		//Hardcoding these options, I can't think of a clean way to do this rn
 		HashSet<Map.Type> here = myMap.getLoc(testLeft);
 		//null check
-		if (here != null){
+		if (here == null){
 			if (here.contains(Map.Type.PACMAN)){
 				return true;
 			}
