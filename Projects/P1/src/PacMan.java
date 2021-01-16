@@ -44,17 +44,36 @@ public class PacMan{
 
 	public boolean move() {
 		ArrayList<Location> locations = this.get_valid_moves();
-
+		if(this.is_ghost_in_range()){
+			for(Location l: locations){
+				if(myMap.getLoc(l).contains(Map.Type.GHOST)){
+					locations.remove(l);
+				}
+			}
+		}
+		for(Location l: locations){
+			System.out.println(l);
+		}
+		System.out.println("Prev: " + this.prevLoc);
+		
+		if(locations.size() > 1 && prevLoc != null){
+			locations.remove(prevLoc);
+		}		
 		if (locations.size() == 0)
 			return false;
-    
+		
+		this.prevLoc = this.myLoc;
+		System.out.println("Curr:" + this.myLoc);
+		System.out.println("updated Prev:" + this.prevLoc);
+		
+		System.out.println();
 		this.myLoc = locations.get(0);
 		this.myMap.move(myName, myLoc, Map.Type.PACMAN);
 		
 		return true;
 
 	}
-
+	
 	public boolean is_ghost_in_range() { 
 		Location up = this.myLoc.shift(0, 1);
 
