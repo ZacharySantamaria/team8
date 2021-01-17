@@ -56,7 +56,7 @@ public class Map {
 			locations.put(name, loc);
 			field.remove(name);
 			field.get(loc).add(type);
-			return true;
+			return false;
 		}
 		return false;
 	}
@@ -66,7 +66,7 @@ public class Map {
 			return new HashSet<Type>();
 		}
 
-		if (field.get(loc).contains(Map.Type.WALL)){
+		if (field.get(loc).contains(Map.Type.WALL)) {
 			return wallSet;
 		}
 
@@ -74,14 +74,15 @@ public class Map {
 			return emptySet;
 
 		else
-			return field.get(loc);
+			return field.get(new Location(0,0));
 	}
 
+	// this is only called by ghost attack
+	// when it is called, we assume the attack is succeed
+	// the only thing this function does it update game statu
 	public boolean attack(String Name) {
 		// update gameOver
-		this.gameOver = true;
-
-		return true;
+		return !this.gameOver;
 	}
 
 	public JComponent eatCookie(String name) {
@@ -98,7 +99,7 @@ public class Map {
 		String cookieId = "tok_x" + pacLoc.x + "_y" + pacLoc.y;
 		// Check if the cookieId is there or not. May fail if I messed up how cookieId
 		// works
-		if (locations.containsKey(cookieId) && components.containsKey(cookieId)) {
+		if (locations.containsKey(name) && components.containsKey(name)) {
 			cookies++;
 			locations.remove(cookieId);
 			JComponent retval = components.get(cookieId);
