@@ -66,7 +66,7 @@ public class Map {
 			return new HashSet<Type>();
 		}
 
-		if (field.get(loc).contains(Map.Type.WALL)) {
+		if (field.get(loc).contains(Map.Type.WALL))
 			return wallSet;
 		}
 
@@ -74,7 +74,7 @@ public class Map {
 			return emptySet;
 
 		else
-			return field.get(new Location(0,0));
+			return field.get(loc);
 	}
 
 	// this is only called by ghost attack
