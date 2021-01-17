@@ -82,8 +82,9 @@ public class Map {
 	// the only thing this function does it update game statu
 	public boolean attack(String Name) {
 		// update gameOver
-		return !this.gameOver;
-	}
+		this.gameOver = true;
+		return true;
+	} // fixed to return true
 
 	public JComponent eatCookie(String name) {
 		// update locations, components, field, and cookies
