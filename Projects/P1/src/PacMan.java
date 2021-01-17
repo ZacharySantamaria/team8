@@ -39,7 +39,7 @@ public class PacMan {
 				|| myMap.getLoc(myLoc.shift(0, -1)).contains(Map.Type.EMPTY))
 			moves.add(myLoc.shift(0, -1));
 
-		return moves; // fixed error should bee checking for COOKIES || EMPTY
+		return moves; //fixed error should bee checking for COOKIES || EMPTY
 	}
 
 	public boolean move() {
