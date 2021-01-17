@@ -64,7 +64,7 @@ public class Ghost {
 		}
 		this.prevLoc = myLoc;
 		this.myLoc = locations.get(0);
-		return false;
+		return true; // fixed to return true if there is a possible move
 	}
 
 	public boolean is_pacman_in_range() {
