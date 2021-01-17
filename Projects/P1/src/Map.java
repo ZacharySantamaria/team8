@@ -56,7 +56,7 @@ public class Map {
 			locations.put(name, loc);
 			field.remove(name);
 			field.get(loc).add(type);
-			return false;
+			return true;
 		}
 		return false;
 	}

@@ -20,7 +20,7 @@ public class PacMan {
 		ArrayList<Location> moves = new ArrayList<>();
 
 		// checks for the position to the right the pacman
-		if (myMap.getLoc(myLoc.shift(1, 0)).contains(Map.Type.COOKIE) 
+		if (myMap.getLoc(myLoc.shift(1, 0)).contains(Map.Type.COOKIE)
 				|| myMap.getLoc(myLoc.shift(1, 0)).contains(Map.Type.EMPTY))
 			moves.add(myLoc.shift(1, 0));
 
@@ -79,8 +79,8 @@ public class PacMan {
 
 		Location right = this.myLoc.shift(1, 0);
 
-		if (myMap.getLoc(up).contains(Map.Type.GHOST) && myMap.getLoc(down).contains(Map.Type.GHOST)
-				&& myMap.getLoc(left).contains(Map.Type.GHOST) && myMap.getLoc(right).contains(Map.Type.GHOST)) {
+		if (myMap.getLoc(up).contains(Map.Type.GHOST) || myMap.getLoc(down).contains(Map.Type.GHOST)
+				|| myMap.getLoc(left).contains(Map.Type.GHOST) || myMap.getLoc(right).contains(Map.Type.GHOST)) {
 			return true;
 		}
 		return false;
@@ -95,5 +95,5 @@ public class PacMan {
 	}
 }
 
-		 
-		
+
+
