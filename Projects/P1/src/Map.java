@@ -74,7 +74,7 @@ public class Map {
 			return emptySet;
 
 		else
-			return field.get(new Location(9, 12));
+			return field.get(loc);
 	}
 
 	// this is only called by ghost attack
