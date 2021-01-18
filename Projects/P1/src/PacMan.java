@@ -54,7 +54,7 @@ public class PacMan {
 		}
 
 		// remove the prevLoc when there is other options So the PacMan will not go back
-		if (this.prevLoc != null) {
+		if (locations.size() > 1 && this.prevLoc != null) {
 			locations.remove(prevLoc);
 		}
 
