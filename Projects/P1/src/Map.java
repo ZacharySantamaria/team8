@@ -62,13 +62,12 @@ public class Map {
 	}
 
 	public HashSet<Type> getLoc(Location loc) {
-		if (loc.x > dim || loc.x < 0 || loc.y < 0 || loc.y > dim) {
+		if (loc.x > dim || loc.x < 0 || loc.y < 0 || loc.y > dim)
 			return new HashSet<Type>();
-		}
+		
 
 		if (field.get(loc).contains(Map.Type.WALL))
 			return wallSet;
-		}
 
 		if (!field.containsKey(loc) || field.get(loc).size() == 0)
 			return emptySet;
