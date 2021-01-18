@@ -56,25 +56,24 @@ public class Map {
 			locations.put(name, loc);
 			field.remove(name);
 			field.get(loc).add(type);
-			return false;
+			return true;
 		}
 		return false;
 	}
 
 	public HashSet<Type> getLoc(Location loc) {
-		if (loc.x > dim || loc.x < 0 || loc.y < 0 || loc.y > dim) {
+		if (loc.x > dim || loc.x < 0 || loc.y < 0 || loc.y > dim)
 			return new HashSet<Type>();
-		}
+		
 
-		if (field.get(loc).contains(Map.Type.WALL)) {
+		if (field.get(loc).contains(Map.Type.WALL))
 			return wallSet;
-		}
 
 		if (!field.containsKey(loc) || field.get(loc).size() == 0)
 			return emptySet;
 
 		else
-			return field.get(new Location(0,0));
+			return field.get(loc);
 	}
 
 	// this is only called by ghost attack
@@ -82,8 +81,9 @@ public class Map {
 	// the only thing this function does it update game statu
 	public boolean attack(String Name) {
 		// update gameOver
-		return !this.gameOver;
-	}
+		this.gameOver = true;
+		return true;
+	} // fixed to return true
 
 	public JComponent eatCookie(String name) {
 		// update locations, components, field, and cookies
@@ -99,7 +99,7 @@ public class Map {
 		String cookieId = "tok_x" + pacLoc.x + "_y" + pacLoc.y;
 		// Check if the cookieId is there or not. May fail if I messed up how cookieId
 		// works
-		if (locations.containsKey(name) && components.containsKey(name)) {
+		if (locations.containsKey(cookieId) && components.containsKey(cookieId)) {
 			cookies++;
 			locations.remove(cookieId);
 			JComponent retval = components.get(cookieId);

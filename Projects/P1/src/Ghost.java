@@ -16,33 +16,31 @@ public class Ghost {
 
 	public ArrayList<Location> get_valid_moves() {
 		ArrayList<Location> valid_moves = new ArrayList<>();
-
-		Location shifted = null;
-
-		// check going down
-		shifted = myLoc.shift(0, 1);
-		if (!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
+	
+		//check going right
+		Location shifted = myLoc.shift(1, 0);
+		if(!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
 			valid_moves.add(shifted);
 		}
-
-		// check going up
-		shifted = myLoc.shift(0, -1);
-		if (!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
-			valid_moves.add(shifted);
-		}
-
-		// check going left
+		
+		//check going left
 		shifted = myLoc.shift(-1, 0);
-		if (!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
+		if(!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
 			valid_moves.add(shifted);
 		}
-
-		// check going right
-		shifted = myLoc.shift(1, 0);
-		if (!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
+		
+		//check going up
+		shifted = myLoc.shift(0, -1);
+		if(!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
 			valid_moves.add(shifted);
 		}
-
+		
+		//check going down
+		shifted = myLoc.shift(0, 1);
+		if(!myMap.getLoc(shifted).contains(Map.Type.WALL)) {
+			valid_moves.add(shifted);
+		}
+    
 		return valid_moves;
 	}
 
@@ -64,7 +62,7 @@ public class Ghost {
 		}
 		this.prevLoc = myLoc;
 		this.myLoc = locations.get(0);
-		return false;
+		return true; // fixed to return true if there is a possible move
 	}
 
 	public boolean is_pacman_in_range() {
@@ -76,7 +74,7 @@ public class Ghost {
 		// Hardcoding these options, I can't think of a clean way to do this rn
 		HashSet<Map.Type> here = myMap.getLoc(testLeft);
 		// null check
-		if (here == null) {
+		if (here != null) {
 			if (here.contains(Map.Type.PACMAN)) {
 				return true;
 			}
@@ -99,10 +97,10 @@ public class Ghost {
 	}
 
 	public boolean attack() {
-		if (is_pacman_in_range() == false) {
+		if (is_pacman_in_range() == true) {
 			myMap.attack(myName);
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 }
